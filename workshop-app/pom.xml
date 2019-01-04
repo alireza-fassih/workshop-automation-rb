@@ -12,4 +12,11 @@
     <artifactId>workshop-app</artifactId>
     <name>workshop-app</name>
 
+    <dependencies>
+        <dependency>
+            <groupId>ir.fassih</groupId>
+            <artifactId>workshop-core</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>
