@@ -65,9 +65,3 @@ export default {
   }
 }
 </script>
-
-<style>
-  .application {
-    font-family: "Vazir";
-  }
-</style>

@@ -1,7 +1,7 @@
 <template>
     <v-navigation-drawer v-model="isOpen" fixed right clipped app>
-      <v-list dense>
-        <v-list-tile @click.stop="toggleNav">
+      <v-list dense>   
+        <v-list-tile >
           <v-list-tile-action>
             <v-icon>exit_to_app</v-icon>
           </v-list-tile-action>

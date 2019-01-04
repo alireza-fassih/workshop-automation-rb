@@ -6,4 +6,5 @@ import 'vazir-font/dist/font-face.css'
 
 Vue.use(Vuetify, {
   iconfont: 'md',
+  rtl: 'true'
 })
