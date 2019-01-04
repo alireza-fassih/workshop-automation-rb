@@ -2,6 +2,7 @@ package ir.fassih.workshop.core;
 
 import ir.fassih.workshop.core.localeutil.LocaleProperties;
 import ir.fassih.workshop.core.localeutil.LocaleUtil;
+import ir.fassih.workshop.core.rest.CommonsExceptionHandler;
 import lombok.AllArgsConstructor;
 import org.apache.coyote.http2.Http2Protocol;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,10 @@ import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactor
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 @Configuration
+@Import(CommonsExceptionHandler.class)
 public class WorkshopCoreAutoConfiguration {
 
     @ConditionalOnMissingBean(LocaleUtil.class)
@@ -29,12 +32,9 @@ public class WorkshopCoreAutoConfiguration {
 
     }
 
-
-
     @Bean
     public WebServerFactoryCustomizer<TomcatServletWebServerFactory> sessionManagerCustomizer() {
         return server -> server.addConnectorCustomizers(connector -> connector.addUpgradeProtocol(new Http2Protocol()));
     }
-
 
 }
