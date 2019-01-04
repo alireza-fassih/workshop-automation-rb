@@ -1,13 +1,13 @@
-package ir.fassih.workshopautomationrb;
+package ir.fassih.workshopautomationapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WorkshopAutomationRbApplication {
+public class WorkshopAutomationApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WorkshopAutomationRbApplication.class, args);
+		SpringApplication.run(WorkshopAutomationApplication.class, args);
 	}
 
 }
