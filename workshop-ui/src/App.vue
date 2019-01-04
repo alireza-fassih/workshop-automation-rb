@@ -16,18 +16,18 @@
     </v-toolbar>
 
     <v-content>
-      <HelloWorld/>
+      <MainLayout />
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import MainLayout from './components/MainLayout'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    MainLayout
   },
   data () {
     return {
