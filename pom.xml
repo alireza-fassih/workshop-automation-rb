@@ -7,7 +7,8 @@
     <modules>
         <module>workshop-app</module>
 		<module>workshop-core</module>
-	</modules>
+        <module>workshop-usermanagement</module>
+    </modules>
 
     <parent>
 		<groupId>org.springframework.boot</groupId>
@@ -33,6 +34,11 @@
 			<dependency>
 				<groupId>ir.fassih</groupId>
 				<artifactId>workshop-core</artifactId>
+				<version>${workshop.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ir.fassih</groupId>
+				<artifactId>workshop-usermanagement</artifactId>
 				<version>${workshop.version}</version>
 			</dependency>
 		</dependencies>

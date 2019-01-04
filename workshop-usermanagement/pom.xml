@@ -9,19 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>workshop-app</artifactId>
-    <name>workshop-app</name>
+    <artifactId>workshop-usermanagement</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>ir.fassih</groupId>
-            <artifactId>workshop-core</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>ir.fassih</groupId>
-            <artifactId>workshop-usermanagement</artifactId>
-        </dependency>
-    </dependencies>
 
 </project>

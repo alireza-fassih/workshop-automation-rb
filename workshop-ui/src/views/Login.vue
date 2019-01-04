@@ -34,7 +34,7 @@ export default {
   }),
   methods: {
     login : function() {
-      console.log( RefineObject(this.data) );
+      let reqBody = RefineObject(this.data);
     }
   }
 }
