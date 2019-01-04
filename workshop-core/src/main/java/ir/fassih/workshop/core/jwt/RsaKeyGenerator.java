@@ -47,7 +47,7 @@ public class RsaKeyGenerator implements CustomTaskChange {
         try {
             JdbcConnection dbConn = (JdbcConnection) database.getConnection();
             PreparedStatement stmt =
-                    dbConn.prepareStatement("INSERT INTO RSA_KEY (PUBLIC_KEY, PRIVATE_KEY, CREATION_TIME) VALUES (?, ?, ?)");
+                    dbConn.prepareStatement("INSERT INTO CORE_RSA_KEY (PUBLIC_KEY, PRIVATE_KEY, CREATION_TIME) VALUES (?, ?, ?)");
             stmt.setBlob(1, getPublicKey());
             stmt.setBlob(2, getPrivateKey());
             stmt.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
