@@ -12,6 +12,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -19,6 +20,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @Configuration
 @EntityScan(basePackages = "ir.fassih.workshop.core.entity")
 @EnableJpaRepositories(basePackages = "ir.fassih.workshop.core.repository")
+@ComponentScan(basePackages = "ir.fassih.workshop.core.manager")
 @Import(CommonsExceptionHandler.class)
 public class WorkshopCoreAutoConfiguration {
 
