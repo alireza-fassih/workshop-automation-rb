@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface WorkshopAppRepository extends JpaRepository<WorkshopAppEntity, Long> {
+
+    WorkshopAppEntity findOneByTitle(String title);
+
 }

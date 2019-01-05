@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RsaKeyRepository extends JpaRepository<RsaKeyEntity, Long> {
+
+    RsaKeyEntity findOneByOrderByIdDesc();
+
 }
