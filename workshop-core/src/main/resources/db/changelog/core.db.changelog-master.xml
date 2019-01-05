@@ -21,4 +21,22 @@
         <customChange class="ir.fassih.workshop.core.jwt.RsaKeyGenerator" />
     </changeSet>
 
+    <changeSet id="create_app_table" author="alireza.fassih">
+        <createTable tableName="CORE_APP">
+            <column name="ID" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="APP_TITLE" type="VARCHAR(255)">
+                <constraints unique="true" nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="insert_demo_app" author="alireza.fassih">
+        <insert tableName="CORE_APP">
+            <column name="APP_TITLE" value="demo" type="VARCHAR(255)"/>
+        </insert>
+    </changeSet>
+
 </databaseChangeLog>
