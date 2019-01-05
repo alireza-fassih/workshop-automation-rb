@@ -1,4 +1,4 @@
-package ir.fassih.workshop.core.entity;
+package ir.fassih.workshop.core.baseentity;
 
 import lombok.Getter;
 import lombok.Setter;

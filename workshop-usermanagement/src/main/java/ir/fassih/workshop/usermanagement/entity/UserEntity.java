@@ -1,6 +1,6 @@
 package ir.fassih.workshop.usermanagement.entity;
 
-import ir.fassih.workshop.core.entity.AbstractWorkshopEntity;
+import ir.fassih.workshop.core.baseentity.AbstractWorkshopEntity;
 import lombok.Getter;
 import lombok.Setter;
 

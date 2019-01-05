@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
-@EntityScan(basePackages = "ir.fassih.workshop.usermanagement.entity")
+@EntityScan(basePackages = "ir.fassih.workshop.usermanagement.baseentity")
 @EnableJpaRepositories(basePackages = "ir.fassih.workshop.usermanagement.repository")
 @ComponentScan(basePackages = "ir.fassih.workshop.usermanagement.manager")
 public class UserManagementAutoConfiguration {
