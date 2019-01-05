@@ -35,6 +35,8 @@ export default {
   methods: {
     login : function() {
       let reqBody = RefineObject(this.data);
+
+      Axios.get("/rest/guest/app-setting/login");
     }
   }
 }

@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/guest/app-setting")
+@RequestMapping("/rest/guest/app-setting")
 public class GuestAppSettingController {
 
     @GetMapping("/login")

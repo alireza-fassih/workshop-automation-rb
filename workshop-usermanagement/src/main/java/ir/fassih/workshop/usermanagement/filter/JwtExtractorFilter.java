@@ -21,7 +21,7 @@ import java.util.List;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class JwtExtractorFilter implements Filter {
 
-    private final List<String> notSecureUris = Arrays.asList("/guest", "/auth");
+    private final List<String> notSecureUris = Arrays.asList("/rest/guest", "/rest/auth");
 
     private final JwtAlgorithm algorithm;
 
