@@ -7,9 +7,11 @@
 
     <changeSet id="create_user_table" author="alireza.fassih">
         <createTable tableName="UM_USER">
-            <column name="ID" type="BIGINT" autoIncrement="true">
-                <constraints primaryKey="true" />
+            <column name="APP_ID" type="BIGINT">
+                <constraints referencedTableName="CORE_APP"
+                     referencedColumnNames="ID" foreignKeyName="UM_USER_CORE_APP_FK" />
             </column>
+            <column name="ID" type="VARCHAR(36)" />
             <column name="USER_USERNAME" type="VARCHAR(255)" >
                 <constraints nullable="false" />
             </column>
@@ -18,7 +20,26 @@
             </column>
             <column name="USER_CREATION_TIME" type="TIMESTAMP" />
         </createTable>
+        <addPrimaryKey tableName="UM_USER"
+           columnNames="APP_ID,ID"
+           constraintName="UM_USER_PK" />
     </changeSet>
 
+
+    <changeSet id="add_demo_user" author="alireza.fassih">
+        <insert tableName="UM_USER">
+            <column name="APP_ID" type="BIGINT" valueNumeric="1" />
+            <column name="ID" type="VARCHAR(36)" value="9f62bcf1-8f1c-46f2-ae9e-9ca377f876bf" />
+            <column name="USER_USERNAME" type="VARCHAR(255)" value="demo" />
+            <column name="USER_PASSWORD" type="VARCHAR(255)" value="demo" />
+        </insert>
+    </changeSet>
+
+    <changeSet author="alireza.fassih" id="createIndex-UM_USER_USERNAME_APP_ID">
+        <createIndex indexName="UM_USER_USERNAME_APP_ID" tableName="UM_USER" unique="true">
+            <column name="APP_ID" type="BIGINT"/>
+            <column name="USER_USERNAME" type="VARCHAR(255)" />
+        </createIndex>
+    </changeSet>
 
 </databaseChangeLog>
