@@ -43,7 +43,7 @@ public class CommonsExceptionHandler {
     @ExceptionHandler(RestException.class)
     public ResponseEntity<ErrorModel> restException(RestException ex) {
         return ResponseEntity.status(ex.getStatus())
-            .body(new ErrorModel(ex.getMessage()));
+            .body(new ErrorModel(localeUtil.getString(ex.getMessage())));
     }
 
 

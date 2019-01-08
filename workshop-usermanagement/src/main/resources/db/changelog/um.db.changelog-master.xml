@@ -31,7 +31,7 @@
             <column name="APP_ID" type="BIGINT" valueNumeric="1" />
             <column name="ID" type="VARCHAR(36)" value="9f62bcf1-8f1c-46f2-ae9e-9ca377f876bf" />
             <column name="USER_USERNAME" type="VARCHAR(255)" value="demo" />
-            <column name="USER_PASSWORD" type="VARCHAR(255)" value="demo" />
+            <column name="USER_PASSWORD" type="VARCHAR(255)" value="$2a$10$knQNGQ6Q9FuAQFvTeqzuluL9VySL05Bblsy8A4/PPmOhyCSMx5eaa" /> <!--demo-->
         </insert>
     </changeSet>
 
