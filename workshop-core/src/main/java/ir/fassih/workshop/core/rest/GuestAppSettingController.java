@@ -1,6 +1,6 @@
 package ir.fassih.workshop.core.rest;
 
-import ir.fassih.workshop.core.model.AppHolder;
+import ir.fassih.workshop.core.holder.AppHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

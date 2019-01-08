@@ -1,9 +1,14 @@
-package ir.fassih.workshop.core.model;
+package ir.fassih.workshop.core.holder;
 
 import lombok.Builder;
 import lombok.Value;
 
 public class AppHolder {
+
+
+    private AppHolder() {
+        throw new UnsupportedOperationException();
+    }
 
     private static ThreadLocal<AppModel> holder = new ThreadLocal<>();
 

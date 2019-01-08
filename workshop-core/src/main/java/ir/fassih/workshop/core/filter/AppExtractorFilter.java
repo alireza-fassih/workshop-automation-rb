@@ -1,9 +1,9 @@
-package ir.fassih.workshop.core.rest;
+package ir.fassih.workshop.core.filter;
 
 
 import ir.fassih.workshop.core.entity.WorkshopAppEntity;
+import ir.fassih.workshop.core.holder.AppHolder;
 import ir.fassih.workshop.core.manager.WorkshopAppManager;
-import ir.fassih.workshop.core.model.AppHolder;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -21,7 +21,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @Configuration
 @EntityScan(basePackages = "ir.fassih.workshop.core.entity")
 @EnableJpaRepositories(basePackages = "ir.fassih.workshop.core.repository")
-@ComponentScan(basePackages = {"ir.fassih.workshop.core.manager", "ir.fassih.workshop.core.rest"})
+@ComponentScan(basePackages = {"ir.fassih.workshop.core.manager", "ir.fassih.workshop.core.rest", "ir.fassih.workshop.core.filter"})
 public class WorkshopCoreAutoConfiguration {
 
     @ConditionalOnMissingBean(LocaleUtil.class)
