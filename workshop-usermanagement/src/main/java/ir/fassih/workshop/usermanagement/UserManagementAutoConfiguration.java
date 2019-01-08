@@ -8,7 +8,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @Configuration
 @EntityScan(basePackages = "ir.fassih.workshop.usermanagement.entity")
 @EnableJpaRepositories(basePackages = "ir.fassih.workshop.usermanagement.repository")
-@ComponentScan(basePackages = { "ir.fassih.workshop.usermanagement.manager", "ir.fassih.workshop.usermanagement.filter" })
+@ComponentScan(basePackages = { "ir.fassih.workshop.usermanagement.manager",
+    "ir.fassih.workshop.usermanagement.filter", "ir.fassih.workshop.usermanagement.rest" })
 public class UserManagementAutoConfiguration {
 
 }

@@ -1,18 +1,19 @@
 package ir.fassih.workshop.core.rest;
 
+import ir.fassih.workshop.core.exceptions.AppNotFoundException;
+import ir.fassih.workshop.core.exceptions.RestException;
 import ir.fassih.workshop.core.localeutil.LocaleUtil;
+import ir.fassih.workshop.core.rest.model.ErrorModel;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.util.Date;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
@@ -32,21 +33,23 @@ public class CommonsExceptionHandler {
     }
 
 
-    private String getLocaleError(FieldError er) {
-        return localeUtil.getString(er.getObjectName() + "." + er.getField()) + " " +
-                localeUtil.getString(er.getCode());
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(AppNotFoundException.class)
+    public ErrorModel appNotFoundException(AppNotFoundException ex) {
+        return new ErrorModel("app not found");
     }
 
 
-    @Getter @Setter
-    private static class ErrorModel {
-        private String message;
-        private Date timestamp;
+    @ExceptionHandler(RestException.class)
+    public ResponseEntity<ErrorModel> restException(RestException ex) {
+        return ResponseEntity.status(ex.getStatus())
+            .body(new ErrorModel(ex.getMessage()));
+    }
 
-        private ErrorModel(String message) {
-            this.message = message;
-            this.timestamp = new Date();
-        }
+
+    private String getLocaleError(FieldError er) {
+        return localeUtil.getString(er.getObjectName() + "." + er.getField()) + " " +
+                localeUtil.getString(er.getCode());
     }
 
 }
