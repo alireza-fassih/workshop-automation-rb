@@ -1,6 +1,6 @@
 package ir.fassih.workshop.usermanagement.entity;
 
-import ir.fassih.workshop.core.entity.AbstractBaseEntity;
+import ir.fassih.workshop.core.baseentity.AbstractWorkshopEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +10,7 @@ import java.util.Date;
 @Entity
 @Table(name = "UM_USER")
 @Getter @Setter
-public class UserEntity extends AbstractBaseEntity {
+public class UserEntity extends AbstractWorkshopEntity {
 
     @Basic
     @Column(name = "USER_USERNAME")

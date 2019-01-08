@@ -34,7 +34,8 @@ export default {
   }),
   methods: {
     login : function() {
-      let reqBody = RefineObject(this.data);
+      Axios.post("/rest/auth/login", reRefineObject(this.data))
+        .then( resp => localStorage.setItem("token", resp.data.token) );
     }
   }
 }
