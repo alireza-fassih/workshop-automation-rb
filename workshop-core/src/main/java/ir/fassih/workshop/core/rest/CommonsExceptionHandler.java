@@ -3,7 +3,7 @@ package ir.fassih.workshop.core.rest;
 import ir.fassih.workshop.core.exceptions.AppNotFoundException;
 import ir.fassih.workshop.core.exceptions.RestException;
 import ir.fassih.workshop.core.localeutil.LocaleUtil;
-import ir.fassih.workshop.core.rest.model.ErrorModel;
+import ir.fassih.workshop.core.rest.model.CommonsResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,25 +25,25 @@ public class CommonsExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ErrorModel methodArgumentNotValidException(MethodArgumentNotValidException ex) {
+    public CommonsResponse methodArgumentNotValidException(MethodArgumentNotValidException ex) {
         String msg = ex.getBindingResult().getFieldErrors()
                 .stream().map(this::getLocaleError)
                 .collect(Collectors.joining("\n"));
-        return new ErrorModel(msg);
+        return new CommonsResponse(msg);
     }
 
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(AppNotFoundException.class)
-    public ErrorModel appNotFoundException(AppNotFoundException ex) {
-        return new ErrorModel("app not found");
+    public CommonsResponse appNotFoundException(AppNotFoundException ex) {
+        return new CommonsResponse("app not found");
     }
 
 
     @ExceptionHandler(RestException.class)
-    public ResponseEntity<ErrorModel> restException(RestException ex) {
+    public ResponseEntity<CommonsResponse> restException(RestException ex) {
         return ResponseEntity.status(ex.getStatus())
-            .body(new ErrorModel(localeUtil.getString(ex.getMessage())));
+            .body(new CommonsResponse(localeUtil.getString(ex.getMessage())));
     }
 
 

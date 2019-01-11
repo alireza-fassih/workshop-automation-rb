@@ -24,6 +24,7 @@ let router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
+  console.log( window.$cookies );
   if( to.name === "login" || to.name === "404" || localStorage.getItem("token") ) {
     next();
   } else {

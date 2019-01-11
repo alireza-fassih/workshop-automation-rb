@@ -6,11 +6,11 @@ import lombok.Setter;
 import java.util.Date;
 
 @Getter @Setter
-public class ErrorModel {
+public class CommonsResponse {
     private String message;
     private Date timestamp;
 
-    public ErrorModel(String message) {
+    public CommonsResponse(String message) {
         this.message = message;
         this.timestamp = new Date();
     }
