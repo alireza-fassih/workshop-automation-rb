@@ -29,13 +29,15 @@
             <column name="APP_TITLE" type="VARCHAR(255)">
                 <constraints unique="true" nullable="false" />
             </column>
+            <column name="CREATION_TIME" type="TIMESTAMP" />
         </createTable>
     </changeSet>
 
 
     <changeSet id="insert_demo_app" author="alireza.fassih">
         <insert tableName="CORE_APP">
-            <column name="APP_TITLE" value="demo" type="VARCHAR(255)"/>
+            <column name="APP_TITLE" value="demo" type="VARCHAR(255)" />
+            <column name="CREATION_TIME" valueDate="now()" type="TIMESTAMP" />
         </insert>
     </changeSet>
 

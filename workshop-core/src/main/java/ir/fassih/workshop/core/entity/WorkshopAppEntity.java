@@ -3,6 +3,7 @@ package ir.fassih.workshop.core.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @Entity
@@ -17,5 +18,10 @@ public class WorkshopAppEntity {
     @Basic
     @Column(name = "APP_TITLE")
     private String title;
+
+    @Basic
+    @Column(name = "CREATION_TIME")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date creationTime;
 
 }

@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import Axios from "axios"
+import RestUtil from "../util/RestUtil"
 import {RefineObject} from "../util/ObjectUtil";
 
 export default {
@@ -34,8 +34,8 @@ export default {
   }),
   methods: {
     login : function() {
-      Axios.post("/rest/auth/login", RefineObject(this.data), {withCredentials: true})
-        .then( resp => localStorage.setItem("token", resp.data.token) );
+      RestUtil.post("/rest/auth/login", RefineObject(this.data))
+        .then( resp => console.log(resp) );
     }
   }
 }
@@ -46,4 +46,3 @@ i {
   margin-left: 10px;
 }
 </style>
-

@@ -4,9 +4,11 @@ package ir.fassih.workshop.core.filter;
 import ir.fassih.workshop.core.entity.WorkshopAppEntity;
 import ir.fassih.workshop.core.holder.AppHolder;
 import ir.fassih.workshop.core.manager.WorkshopAppManager;
+import ir.fassih.workshop.core.rest.model.CommonsResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -19,7 +21,7 @@ import java.io.PrintWriter;
 @Slf4j
 @Component
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class AppExtractorFilter implements Filter {
+public class AppExtractorFilter implements Filter, GeneralResponseCloser{
 
     private static final String APP_HEADER = "Workshop-app";
 
@@ -30,13 +32,13 @@ public class AppExtractorFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         AppHolder.AppModel appModel = AppHolder.getAppModel();
         if(appModel == null) {
-            doFilterIntenal(servletRequest, servletResponse, filterChain);
+            doFilterInternal(servletRequest, servletResponse, filterChain);
         } else {
             filterChain.doFilter(servletRequest, servletResponse);
         }
     }
 
-    private void doFilterIntenal(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    private void doFilterInternal(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         if (servletRequest instanceof HttpServletRequest && servletResponse instanceof HttpServletResponse ) {
             HttpServletRequest request = (HttpServletRequest) servletRequest;
             HttpServletResponse response = (HttpServletResponse) servletResponse;
@@ -52,15 +54,9 @@ public class AppExtractorFilter implements Filter {
                     return;
                 }
             }
-            response.setStatus(400);
-            try ( PrintWriter writer = response.getWriter() ) {
-                writer.println("{ \"message\" : \"app not found\" }");
-            }
+            closeResponse(servletResponse, new CommonsResponse("app not found"), HttpStatus.BAD_REQUEST);
         } else {
-            log.warn("not http request {}", servletRequest.getClass());
-            try ( PrintWriter writer = servletResponse.getWriter() ) {
-                writer.println("{ \"message\" : \"Not Http request\" }");
-            }
+            closeResponse(servletResponse, new CommonsResponse("Not http request"), HttpStatus.BAD_REQUEST);
         }
     }
 
