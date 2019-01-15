@@ -50,8 +50,12 @@ public class AppExtractorFilter implements Filter, GeneralResponseCloser{
                         .id(entity.getId())
                         .title(entity.getTitle())
                         .build());
-                    filterChain.doFilter(servletRequest, servletResponse);
-                    return;
+                    try {
+                        filterChain.doFilter(servletRequest, servletResponse);
+                        return;
+                    } finally {
+                        AppHolder.setAppModel(null);
+                    }
                 }
             }
             closeResponse(servletResponse, new CommonsResponse("app not found"), HttpStatus.BAD_REQUEST);

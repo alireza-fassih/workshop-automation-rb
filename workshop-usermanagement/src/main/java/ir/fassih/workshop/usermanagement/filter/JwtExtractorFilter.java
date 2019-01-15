@@ -54,13 +54,15 @@ public class JwtExtractorFilter implements Filter, GeneralResponseCloser, Initia
                 if( token.isPresent() ) {
                     try {
                         verifier.verify(token.get().getValue());
-
+                        // TODO: put user and app to thread local
                         filterChain.doFilter(servletRequest, servletResponse);
                     } catch (JWTVerificationException ex) {
                         log.info("cannot verified jwt ", ex);
                         response.addCookie(removeCookie("token"));
                         response.addCookie(removeCookie("scrf-token"));
                         closeResponse(servletResponse, new CommonsResponse("Invalid token"), HttpStatus.BAD_REQUEST);
+                    } finally {
+                        // TODO: clear thread local
                     }
                 } else {
                     closeResponse(servletResponse, new CommonsResponse("Authentication failed"), HttpStatus.UNAUTHORIZED);

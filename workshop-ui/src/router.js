@@ -23,12 +23,4 @@ let router = new Router({
   ]
 });
 
-// router.beforeEach((to, from, next) => {
-//   if( to.name === "login" || to.name === "404" || localStorage.getItem("IsLogedIn") ) {
-//     next();
-//   } else {
-//     next("login");
-//   }
-// });
-
 export default router;

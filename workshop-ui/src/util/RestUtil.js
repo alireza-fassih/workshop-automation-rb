@@ -1,4 +1,5 @@
 import Axios from "axios"
+import router from "../router"
 
 const RestUtil = Axios.create({
     withCredentials: true
@@ -10,7 +11,7 @@ RestUtil.interceptors.response.use((response) => {
   },
   (error) => {
     if( error.response.status === 401 ) {
-      console.log("yes !");
+      router.push('/login');
     }
     return Promise.reject(error);
   }
