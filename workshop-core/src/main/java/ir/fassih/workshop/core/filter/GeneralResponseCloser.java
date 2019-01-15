@@ -1,6 +1,7 @@
 package ir.fassih.workshop.core.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import ir.fassih.workshop.core.rest.model.CommonsResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -16,7 +17,10 @@ import java.io.PrintWriter;
 public interface GeneralResponseCloser {
 
     Logger log = LoggerFactory.getLogger(GeneralResponseCloser.class);
-    ObjectMapper mapper = new ObjectMapper();
+    ObjectMapper mapper = new ObjectMapper(){{
+        disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    }};
+
 
 
     default void closeResponse(ServletResponse servletResponse, CommonsResponse response, HttpStatus status) throws IOException {

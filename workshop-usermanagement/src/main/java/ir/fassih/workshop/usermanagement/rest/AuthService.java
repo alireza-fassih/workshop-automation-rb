@@ -2,6 +2,7 @@ package ir.fassih.workshop.usermanagement.rest;
 
 import com.auth0.jwt.JWT;
 import ir.fassih.workshop.core.jwt.JwtAlgorithm;
+import ir.fassih.workshop.core.localeutil.LocaleUtil;
 import ir.fassih.workshop.core.model.AuthModel;
 import ir.fassih.workshop.core.rest.model.CommonsResponse;
 import ir.fassih.workshop.usermanagement.manager.UserManager;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.SecureRandom;
 import java.util.Date;
@@ -30,16 +32,25 @@ public class AuthService {
 
     private final UserManager  userManager;
     private final JwtAlgorithm algorithm;
+    private final LocaleUtil   localeUtil;
 
 
     @PostMapping("/login")
-    public ResponseEntity<CommonsResponse> login(@RequestBody LoginModel dto, HttpServletResponse response) {
+    public ResponseEntity<CommonsResponse> login(@RequestBody LoginModel dto, HttpServletResponse response, HttpServletRequest request) {
         AuthModel token = userManager.createToken(dto.getUsername(), dto.getPassword());
-        Cookie cookie = new Cookie("token", createJwt(token));
+        Cookie cookie = createCookie("token", createJwt(token), request);
         cookie.setHttpOnly(true);
         response.addCookie(cookie);
-        response.addCookie(new Cookie("scrf-token", createRandomString(20)));
-        return ResponseEntity.ok(new CommonsResponse("logged in"));
+        response.addCookie(createCookie("scrf-token", createRandomString(20), request));
+        return ResponseEntity.ok(new CommonsResponse(localeUtil.getString("logged_in_successFull")));
+    }
+
+
+    private Cookie createCookie(String name, String value,HttpServletRequest request) {
+        Cookie cookie = new Cookie(name, value);
+        cookie.setPath("/rest");
+        cookie.setDomain(request.getServerName());
+        return cookie;
     }
 
 

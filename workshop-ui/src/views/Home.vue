@@ -42,11 +42,12 @@
       <v-spacer></v-spacer>
       <span>&copy; 2017</span>
     </v-footer>
-    
+
   </v-app>
 </template>
 
 <script>
+import RestUtil from "../util/RestUtil"
 import MainNavigation from "../components/MainNavigation"
 
 export default {
@@ -55,6 +56,15 @@ export default {
   },
   data: () => ({
   }),
+  beforeRouteEnter: function (to, from, next) {
+    RestUtil.get("/rest/dashboard-setting")
+      .then(resp => {
+        next();
+      })
+      .catch(error => {
+        next(false);
+      });
+  },
   methods: {
     toggleNavigation : function() {
       this.$refs.navigation.toggleNav();
